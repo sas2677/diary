@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+body{
+
+    margin: 0;
+    background-color: lightgray;
+
+    
+}
+
+.container{
+
+        background-color: white;
+        min-height: 100vh;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        border-radius: 10px;
+}
+
+.task-area{
+
+    border: 1px solid lightgray;
+
+}
+
+
+.task-tabs{
+    display: flex;
+    border-bottom:1px solid lightgray;
+    position: relative;
+    padding: 10px;
+    font-size: 20px;
+    
+}
+
+
+.task-tabs div{
+
+    padding: 1em;
+
+}
+
+	#all,#ongoing,#done{
+		
+		color:black;
+		padding: 20px;
+	}
+	
+	#all:hover{
+		color: gold;
+		cursor: pointer;
+		border: 1px solid gold;
+	}
+	#ongoing:hover{
+	
+		color:lightgray;
+		cursor: pointer;
+		border: 1px solid lightgray;
+		
+	}
+	#done:hover{
+		color: red;
+		cursor: pointer;
+		border: 1px solid red; 
+	
+	}
+	
+
+
+#under-line{
+    height:4px !important;
+    background-color: white;
+    position: absolute;
+    width: 0;
+    left: 0px;
+    top: 40px;
+    padding: 0px;
+    height: 4px;
+    transition: 0.5s;
+
+
+
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+
+.task-done{
+
+    text-decoration: line-through;
+}
+
+
+
+
+.task-tabs> div{
+
+
+    cursor:pointer;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Simple line icons-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+
+	.loginform{
+	
+		border: 2px solid lightgray;
+		height: 500px;
+		margin-top: 30px;
+		border-radius: 25px;
+	
+		
+		
+	}
+	
+	h2{
+		text-align: center;
+		padding-top: 10px;
+	
+	}
+	
+	
+	form{
+
+	height: 300px; 
+	text-align: center;
+	padding-top: 100px;
+	}
+	
+	.id_body{
+		height: 50px;	
+		
+	}
+	
+	label{
+		font-size: 25px;
+		padding-right: 10px;
+	}
+	
+	 .id_body>input{
+	 	width:600px;
+	 	height:50px;
+	 
+	 }
+	 
+	 .password_body{
+	 	padding-top: 30px;
+	 	padding-right:75px;
+	 	
+	 
+	 }
+	 
+	 .password_body>input{
+	 
+	  	width:600px;
+	 	height:50px;
+	 
+	 }
+	 
+	 .btn-outline-info{
+	 	margin-top: 20px;
+	 	width: 200px;
+	 	height: 50px;
+	 
+	 
+	 }
+	 
+	 .btn-outline-danger{
+	 
+	 	margin-top: 20px;
+	 	width: 200px;
+	 	height: 50px;
+	 	margin-right: 10px;
+	 
+	 }
+	 
+	 
+	 .button_group{
+	 
+	 	margin-top:15px;
+	 
+	 	
+	 }
+	
+
+</style>
+</head>
+<body>
+<div class="loginform">
+	<h2>로그인</h2>
+		<form action="/login/loginpro" method="post">
+		<div class="id_body">
+
+			<label>ID</label> <input type="text" id="id" name="id"
+				placeholder="ID를 입력해주세요"> 
+		</div>
+		<div class="password_body" >
+				<label>password</label> <input
+				type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+		</div>
+		<div class="button_group">
+			<button type="reset" class="btn btn-outline-danger">초기화</button>
+			<button type="submit" class="btn btn-outline-info">로그인</button>
+		</div>
+
+	</form>
+</div>
+<th:block th:include="include/footer"></th:block>
+       
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+	
+</body>
+</html>
