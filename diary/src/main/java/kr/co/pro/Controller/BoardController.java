@@ -14,7 +14,6 @@ import kr.co.pro.dto.BoardDTO;
 import kr.co.pro.dto.Criteria;
 import kr.co.pro.dto.PageDTO;
 import kr.co.pro.service.Boardservice;
-import kr.co.pro.service.FileService;
 import kr.co.pro.service.Replyservice;
 
 
@@ -29,8 +28,7 @@ public class BoardController {
 	@Autowired
 	Replyservice replyService;
 	
-	@Autowired
-	FileService fileservice;
+	
 	
 	//게시판 리스트
 	@GetMapping("/board/list")
@@ -78,18 +76,6 @@ public class BoardController {
 		return "/board/board-edit-form";	
 	}
 	
-	//파일리스트 이동
-	@GetMapping("board/photo")
-	public String file() {
-		
-		
-		
-		return "/board/filelist";
-	}
-	
-	
-	
-
 	
 	//todolist
 	@GetMapping("/board/todolist")
