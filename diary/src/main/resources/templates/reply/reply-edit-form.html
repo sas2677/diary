@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Simple line icons-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+	<div class="card m-4">
+		<h5 class="card-title mt-3 mb-3" style="text-align: center">Comment
+			수정</h5>
+
+
+		<div class="card-body">
+			<div class="row">
+
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="form-control-label">작성자</label> <input
+							class="form-control" type="text" id="user"
+							th:value="${replydata.user}" readonly="readonly">
+					</div>
+				</div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">내용</label>
+							<textarea class="form-control" type="text" id="rebody"
+								placeholder="내용" maxlength="300" th:value="${replydata.rebody}"></textarea>
+
+						</div>
+					</div>
+					<input type="hidden" th:value="${replydata.rno}" name="rno"
+						id="rno"> <input type="hidden" th:value="${replydata.bno}"
+						name="bno" id="bno">
+
+				</div>
+			</div>
+		</div>
+	
+	<th:block th:if="${session.loginuser.id == replydata.user}or${session.loginuser.id == 'admin'}">
+		<div class="updateBtn">
+			<input style="width: 100%" type="submit" class="btn btn-outline-dark"
+				id="replySubmitBtn" value="수정 완료" />
+		</div>
+		<div>
+			<input style="width: 100%; margin-top: 10px;" type="submit"
+				class="btn btn-outline-danger" id="replyDeleteBtn" value="댓글 삭제">
+
+		</div>
+	</th:block>
+	
+
+
+
+	<script>
+
+
+    const replySubmitBtn = document.querySelector('#replySubmitBtn');
+    const urlParams = new URL(location.href).searchParams;
+    const replyDeleteBtn = document.querySelector('#replyDeleteBtn');
+    
+    replyDeleteBtn.addEventListener("click", function(){
+		  
+    	 const input_rno = urlParams.get('rno');
+		  
+		   const board2 = {
+				rno : input_rno 
+		   };
+			          
+		  const url = "/api/reply";
+
+	      fetch(url, {
+	         method : "DELETE",
+	         body : JSON.stringify(board2),
+	         headers : {
+	             "Content-Type" : "application/json"
+	         }
+	      }).then(response => {
+	         if(response.ok){
+	             response.text();
+	             alert('삭제가 완료되었습니다.');
+	             opener.location.reload();
+	             window.open('','_self').close();
+	             
+	         } else {
+	             alert('삭제를 실패하였습니다.');
+	         }
+	      });
+	  });
+
+
+    replySubmitBtn.addEventListener("click", () => {
+    	console.log("클릭");
+    	const input_rno = document.querySelector('#rno').value;
+    	const input_bno = document.querySelector('#bno').value;
+    	const input_user = document.querySelector('#user').value;
+        const input_rebody = document.querySelector('#rebody').value;
+  
+        
+        const board1 = {
+        	rno:input_rno,
+        	bno : input_bno,
+            user : input_user,
+            rebody : input_rebody
+         
+        };
+
+        if( input_rebody== "")
+        {
+            alert('*이 있는 칸은 채워주시기 바랍니다.')
+            return;
+        }
+
+        console.log(board1);
+
+        const url = "/api/reply";
+
+        fetch(url, {
+           method : "PUT",
+           body : JSON.stringify(board1),
+           headers : {
+               "Content-Type" : "application/json"
+           }
+        }).then(response => {
+           if(response.ok){
+               response.text();
+               alert('수정이 완료되었습니다.');
+               window.location.reload();
+               opener.location.reload();
+           } else {
+               alert('수정을 실패하였습니다.');
+           }
+        });
+    });//수정 끝
+    
+    
+   
+   // 삭제 끝 ============
+
+</script>
+</body>
+</html>

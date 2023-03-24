@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+          <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="card m-4">
+		<h5 class="card-title mt-3 mb-3" style="text-align: center">Comment 등록</h5>
+
+
+		<div class="card-body">
+			<div class="row">
+			
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="form-control-label">작성자</label> <input
+							class="form-control" type="text" id="user"
+							th:value="${session.loginuser.id}" readonly="readonly">
+					</div>
+				</div>
+				
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">내용</label>
+							<textarea class="form-control" type="text" id="rebody"
+								placeholder="내용" maxlength="300"></textarea>
+
+						</div>
+					</div>
+						<input type="hidden" th:value="${bnoData}" name="bno" id="bno">
+					</div>
+			</div>
+		</div>
+
+
+
+	<input style="width: 100%; margin-top: 20px" type="submit" class="btn btn-outline-dark" id="replySubmitBtn" value="댓글 작성" />
+	
+	
+	
+	<script>
+	 const replySubmitBtn = document.querySelector('#replySubmitBtn');
+
+	 replySubmitBtn.addEventListener("click", () => {
+	    	console.log("클릭");
+	        const input_user = document.querySelector('#user').value;       
+	        const input_rebody = document.querySelector('#rebody').value;
+	        const input_bno = document.querySelector('#bno').value;
+				      
+
+
+	        
+	        
+	        
+	        const board1 = {
+	            user : input_user,
+	           	rebody : input_rebody,
+	           	bno : input_bno
+	        };
+
+	        if(input_rebody == "")
+	        {
+	            alert('*이 있는 칸은 채워주시기 바랍니다.')
+	            return;
+	        }
+
+	        console.log(board1);
+
+	        const url = "/api/reply";
+
+	        fetch(url, {
+	           method : "POST",
+	           body : JSON.stringify(board1),
+	           headers : {
+	               "Content-Type" : "application/json"
+	           }
+	        }).then(response => {
+	           if(response.ok){
+	               response.text();
+	               alert('등록이 완료되었습니다.');
+	               window.location.reload();
+	               opener.location.reload();
+	           } else {
+	               alert('등록을 실패하였습니다.');
+	               window.close();
+	               
+	           }
+	        });
+
+
+	    });
+		
+ 
+
+	
+		
+	</script>
+
+</body>
+</html>

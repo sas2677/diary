@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DIARY</title>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Simple line icons-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+	rel="stylesheet" />
+<!-- Google fonts-->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/styles.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	
+	<style>
+	.btn-outline-primary{
+		margin-top: 20px; 
+		width: 100%
+	
+	}
+	
+	.btn-outline-danger{
+	
+		margin-top: 20px;
+		width: 100%
+	}
+	
+	
+	
+	</style>
+</head>
+<body>
+
+	<div class="card m-4">
+		<h5 class="card-title mt-3 mb-3" style="text-align: center">회원가입</h5>
+
+		<form action="/login/signup" method="post">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">ID</label> <input
+								class="form-control" name="id" id="id" placeholder="ID를 입력하세요">
+
+							<span id="idcheck"></span>
+
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">Password</label> <input
+								class="form-control" type="password" name="password"
+								id="password" autocomplete="on" placeholder="password를 입력하세요"
+								maxlength="13"> <span id="pwcheck"></span>
+
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">Repeat Password</label> <input
+								class="form-control" type="password" name="repwd" id="repwd" autocomplete="on"
+								placeholder="remember me" maxlength="13">
+
+						</div>
+					</div>
+
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="form-control-label">nickname</label> <input
+								class="form-control" type="text" name="nickname" id="nickname"
+								placeholder="nickname를 입력하세요"> <span id="nicknamecheck"></span>
+						</div>
+					</div>
+
+					<div class="col-sm-10">
+						<div class="form-group"></div>
+					</div>
+					<div class="clearfix">
+						<button type="reset"
+							 class="btn btn-outline-danger">Cancel</button>
+						<button class="btn btn-outline-primary" type="button" onclick="join_user()">회원가입</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<script>  //아이디 중복 ajax
+
+
+	
+	$(function(){
+		$("#id").on('keyup',idcheck);
+})
+
+
+	function idcheck(){
+		var id = $("#id").val();
+		var sendData = {"id":id}
+		
+	$.ajax({
+		method:'post',
+		url: '/idcheck',
+		data: sendData,
+		success:function(idcheckNum){
+			if(idcheckNum === "fail"){
+				$('#idcheck').html("아이디 중복").css("color", "red");
+				$()
+			} else {
+				$('#idcheck').html("사용가능한 아이디").css("color", "green");
+			}
+
+		}
+
+	});
+	}
+
+	
+
+
+	$(function(){
+		$("#nickname").on('keyup',nicknamecheck);
+})
+
+
+
+
+
+
+	
+	function nicknamecheck(){
+		var nickname = $("#nickname").val();
+		var sendData = {"nickname":nickname}
+		
+	$.ajax({
+		method:'post',
+		url: '/nicknamecheck',
+		data: sendData,
+		success:function(namecheckNum){
+			if(namecheckNum === "fail"){
+				$('#nicknamecheck').html("사용불가능한 닉네임입니다.").css("color", "red");
+			} else {
+				$('#nicknamecheck').html("사용가능한 닉네임입니다.").css("color", "green");
+			}
+
+		}
+
+	});
+	}
+	
+	
+</script>	
+
+<script>
+	var submitBtn = document.querySelector(".btn-outline-primary");
+	
+	function join_user(){
+		 
+		 var userid = document.getElementById("id");
+		 var userpw = document.getElementById("password");
+		 var userpw2 = document.getElementById("repwd");
+		 var usernickname = document.getElementById("nickname");
+		
+		  
+		 if(userid.value == ""){
+			 alert("아이디를 입력하세요.");
+			 userid.focus();
+			 return false;
+		 }
+		 
+		 if(userpw.value == ""){
+			 alert("패스워드를 입력하세요.");
+			 userpw.focus();
+			 return false;
+		 }
+		 
+		 if(userpw2.value == ""){
+			 alert("패스워드 확인를 입력하세요.");
+			 userpw2.focus();
+			 return false;
+		 }
+		 
+		 if(userpw.value != userpw2.value){
+			 alert("비밀번호가 동일하지 않습니다.");
+			 userpw.focus();
+			 return false;
+		 }
+		 
+		 if(usernickname.value == ""){
+			 alert("닉네임을 입력하세요.");
+			 usernickname.focus();
+			 return false;
+		 }
+		 
+	alert("가입되었습니다.")
+	submitBtn.type = 'submit';
+
+	 }
+	 
+	 </script>
+</body>
+</html>
