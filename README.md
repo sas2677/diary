@@ -26,7 +26,7 @@
   <p>진행중</p>
  <img src="https://user-images.githubusercontent.com/56112782/228103298-a89062e2-5424-4f64-b1b2-3e63272a289e.png" width="90%"></img>
 
-  <p>마침</p>
+  <p>완료</p>
   <img src="https://user-images.githubusercontent.com/56112782/228103366-85e417c6-3750-4d8b-b91e-cad25ce5286d.png" width="90%"></img>
 
   
