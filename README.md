@@ -21,7 +21,7 @@
   
 3.TO DO LIST
   <p>리스트</p>
-![image](https://user-images.githubusercontent.com/56112782/228102016-8e52a6f0-9f35-413a-8cc2-3905a8d2b19e.png)
+  <img src="https://user-images.githubusercontent.com/56112782/228102863-e652730f-0ab5-42cc-8cef-b57421863f9d.png" width="90%"></img>
 
   <p>진행중</p>
   ![image](https://user-images.githubusercontent.com/56112782/228102178-995362ab-6931-4e59-be2e-c3166c7d3f44.png)
